@@ -5,20 +5,20 @@
 
 include $(TOPDIR)/rules.mk
 
-PECL_NAME:=krb5
-PECL_LONGNAME:=Bindings for the Kerberos library
+PECL_NAME:=imagick
+PECL_LONGNAME:=Image Processing (ImageMagick binding)
 
-PKG_VERSION:=1.1.4
+PKG_VERSION:=3.5.1
 PKG_RELEASE:=1
-PKG_HASH:=8aba35bb9f2892be9092e8717d3e13604a817cdfb478dbc3855a226abc6c5979
+PKG_HASH:=243ff2094edcacb2ae46ee3a4d9f38a60a4f26a6a71f59023b6198cbed0f7f81
 
-PKG_NAME:=php7-pecl-krb5
+PKG_NAME:=php7-pecl-imagick
 PKG_SOURCE:=$(PECL_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://pecl.php.net/get/
 
 PKG_MAINTAINER:=W. Michael Petullo <mike@flyn.org>
 
-PKG_LICENSE:=MIT
+PKG_LICENSE:=PHP-3.01
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_BUILD_DEPENDS:=php7
@@ -29,9 +29,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 include ../php7/pecl.mk
 
-CONFIGURE_ARGS+= \
-	--with-krb5=shared,"$(STAGING_DIR)/usr" \
-	--with-krb5config=$(STAGING_DIR)/usr/bin/krb5-config
+CONFIGURE_ARGS+= --with-imagick="$(STAGING_DIR)/usr"
 
-$(eval $(call PHP7PECLPackage,krb5,$(PECL_LONGNAME),+krb5-libs,30))
+$(eval $(call PHP7PECLPackage,imagick,$(PECL_LONGNAME),+imagemagick,30))
 $(eval $(call BuildPackage,$(PKG_NAME)))
